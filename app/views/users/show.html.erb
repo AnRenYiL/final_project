@@ -1,0 +1,106 @@
+<div class="show-user">
+    <div class="user-info">
+        <div class="ui card">
+            <div class="image">
+                <%= image_tag(@user.picture_url)%>
+            </div>
+            <div class="content">
+                <%= link_to @user.user_name, edit_user_path(@user), class:"header" %>
+                <div class="meta">
+                <span class="date">Joined in <%= @user.created_at.year%></span>
+                </div>
+                <div class="description">
+                    <%= @user.description%>
+                </div>
+            </div>
+            <div class="extra content">
+                <span class="right floated">
+                <i class="toggle on icon"></i>
+                    <%= link_to "Logout", sessions_path, method: :delete, data:{confirm: "Are you sure you want to log out"}%>
+                </span>
+                <span>
+                <i class="heart icon"></i>
+                22 Friends
+                </span>
+                
+            </div>
+        </div>
+        <div class="request-list">
+            <div class="ui feed">
+                <%1.upto(10) do%>
+                <div class="event">
+                    <div class="label">
+                        <%= image_tag("111570909248_.pic_hd.jpg")%>
+                    </div>
+                    <div class="content">
+                        <div class="summary">
+                            <span class="ui purple label">
+                            Elliot Fu
+                            </span> wants to add you as a friend
+                            <div class="date">
+                            1 Hour Ago
+                            </div>
+                            
+                        </div>
+                    </div>
+                    <div class="ui buttons" style="margin-right:1rem">
+                        <button class="ui basic red button">Decline</button>
+                        <div class="or"></div>
+                        <button class="ui basic green button">Approve</button>
+                    </div>
+                </div>
+                <%end%>
+            </div>
+        </div>
+    </div>
+    <div style="display:flex;justify-content:space-between;margin-bottom:10px;align-content:center;">
+        <h2>Friend List</h2>
+        <button class="ui purple basic button" style="margin-right:10rem">Add New Friend</button>
+    </div>
+    <div class="ui link cards">
+        <%1.upto(2) do%>
+        <div class="card">
+            <div class="image">
+                <%= image_tag("81570909242_.pic_hd.jpg")%>
+            </div>
+            <div class="content">
+            <div class="header">Matt Giampietro</div>
+                <div class="meta">
+                    Joined in 2013
+                </div>
+                <div class="description">
+                    Matthew is an interior designer living in New York.
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="image">
+                <%= image_tag("91570909243_.pic.jpg")%>
+            </div>
+            <div class="content">
+            <div class="header">Molly</div>
+                <div class="meta">
+                    Joined in 2011
+                </div>
+                <div class="description">
+                    Molly is a personal assistant living in Paris.
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="image">
+                <%= image_tag("101570909246_.pic_hd.jpg")%>
+            </div>
+            <div class="content">
+            <div class="header">Elyse</div>
+                <div class="meta">
+                    Joined in 2014
+                </div>
+                <div class="description">
+                    Elyse is a copywriter working in New York.
+                </div>
+            </div>
+        </div>
+        <%end%>
+    </div>
+</div>

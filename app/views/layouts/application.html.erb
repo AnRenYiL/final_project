@@ -9,7 +9,61 @@
     <%= javascript_pack_tag 'application' %>
   </head>
 
-  <body>
-    <%= yield %>
+  <body class="main-body">
+
+        <div class=" menu-list ui column vertical inverted menu" >
+          <div class="item">
+            <a class="ui logo icon image" href="/">
+              <%= image_tag("logo.png")%>
+            </a>
+          </div>
+          <% if user_signed_in?%>
+          <div class="item">
+            <%= link_to  current_user.user_name, user_path(current_user) %>
+          </div>
+          <div class="item">
+            <div class="header">Friends</div>
+            <div class="menu">
+                <a class="item" href="/introduction/integrations.html">
+                  Alice
+                </a>
+                <a class="item" href="/introduction/build-tools.html">
+                  Hindreen
+                </a>
+                <a class="item" href="/introduction/advanced-usage.html">
+                  Naveed
+                </a>
+                <a class="item" href="/introduction/glossary.html">
+                  Brandon
+                </a>
+            </div>
+          </div>
+          <div class="item">
+            <div class="header">Group</div>
+            <div class="menu">
+                <a class="item" href="/introduction/integrations.html">
+                  Cohort 33
+                </a>
+                <a class="item" href="/introduction/build-tools.html">
+                  Group Project
+                </a>
+                <a class="item" href="/introduction/advanced-usage.html">
+                  Events
+                </a>
+                <a class="item" href="/introduction/glossary.html">
+                  Jobs
+                </a>
+            </div>
+          </div>
+          <% else %>
+          <div class="item">
+            Welcome to Hi Chat!
+          </div>
+          <% end %>
+        </div>
+
+      <div class="main-container" >
+        <%= yield %>
+      </div>
   </body>
 </html>

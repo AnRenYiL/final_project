@@ -1,0 +1,39 @@
+<div class="signup-and-login-form">
+    <h1>Sign Up</h1>
+    
+    <% if @user.errors.any? %>
+    <ul>
+        <% @user.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+        <% end %>
+    </ul>
+    <% end %>
+    
+    <%= form_for(@user, :html => {:class=>'ui form'}) do |f| %>
+    <div class="field">
+        <%= f.label :user_name %>
+        <%= f.text_field :user_name %>
+    </div>
+    <div class="field">
+        <%= f.label :email %>
+        <%= f.email_field :email %>
+    </div>
+    <div class="field">
+        <%= f.label :picture_url %>
+        <%= f.text_field :picture_url %>
+    </div>
+    <div class="field">
+        <%= f.label :password %>
+        <%= f.password_field :password %>
+    </div>
+    <div class="field">
+        <%= f.label :password_confirmation %>
+        <%= f.password_field :password_confirmation %>
+    </div>
+    <div class="field">
+        <%= f.label :description %>
+        <%= f.text_area :description %>
+    </div>
+    <%= f.submit "Submit", class:"ui primary button" %>
+    <% end %>
+</div>

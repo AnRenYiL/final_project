@@ -1,0 +1,34 @@
+<div class="chatting-room-title-part">
+    <h1 class="chatting-room-title">Chat Room</h1>
+    <div class="ui horizontal divider">
+        Messages
+    </div>
+</div>
+<div class="chatting-room-body-part">
+    <% 1.upto(4) do %>
+    <div class="chatting-item">
+            <%= image_tag  "81570909242_.pic_hd.jpg" %>
+            <div>
+                <p><strong>Brandon</strong>&nbsp;&nbsp;&nbsp;&nbsp;<small>4:34 PM</small></p>
+                <p>Hey Hindreen after class can you let them know that the quiz will be on wed next week and give them a rundown on what’s on it. As well as let them know the react-native class will be pushed to wed the following week. They’ll also have TA’s at campus from 21-25 to help with final projects</p>
+            </div>
+    </div>
+    <div class="chatting-item">
+            <%= image_tag  "91570909243_.pic.jpg" %>
+            <div>
+                <p><strong>Hindreen</strong>&nbsp;&nbsp;&nbsp;&nbsp;<small>4:36 PM</small></p>
+                <p>npm install sass-loader node-sass webpack --save-dev</p>
+            </div>
+    </div>
+    <div class="chatting-item">
+            <%= image_tag  "131570909262_.pic_thumb.jpg" %>
+            <div>
+                <p><strong>Alice</strong>&nbsp;&nbsp;&nbsp;&nbsp;<small>4:38 PM</small></p>
+                <p>is it for all day?</p>
+            </div>
+    </div>
+    <%end%>
+</div>
+<form class="chatting-room-form-part">
+        <input type="text" name="message" placeholder="new message">
+</form>

@@ -1,0 +1,18 @@
+<div class="signup-and-login-form">
+    <h1>Log In</h1>
+    
+    <%= form_tag sessions_path, class:'ui form' do %>
+    <div class="field">
+        <%= label_tag :email %>
+        <%= email_field_tag :email, nil %>
+    </div>
+    <div class="field">
+        <%= label_tag :password %>
+        <%= password_field_tag :password, nil %>
+    </div>
+    <div class="field">
+        <%= submit_tag "Log In", class:"ui primary button" %>
+        <%= link_to  "Sign Up", new_user_path, class:"ui purple button" %>
+    </div>
+    <% end %>
+</div>

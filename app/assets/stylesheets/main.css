@@ -1,0 +1,111 @@
+.main-body {
+    display: flex;
+    flex-direction: row;
+    background-color: #FFFFFF;
+}
+
+.menu-list {
+    position: fixed;
+    z-index: 1;
+    height: 100vh;
+    overflow: auto;
+    -webkit-box-flex: 0;
+    -webkit-flex: 0 0 auto;
+    -ms-flex: 0 0 auto;
+    flex: 0 0 auto;
+}
+
+.main-container {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1 1 auto;
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto;
+    min-width: 0px;
+    margin-left: 210px;
+    padding-top: 1.5rem;
+}
+
+.signup-and-login-form {
+    margin: 2rem 5rem 2rem 3rem;
+}
+
+.show-user {
+    margin: 1rem 5rem 2rem 3rem;
+}
+
+.user-info {
+    display: flex;
+    flex-direction: row;
+}
+
+.request-list {
+    max-height: 424px;
+    margin-left: 2rem;
+    margin-right: 5rem;
+    width: 900px;
+    overflow-y: auto;
+}
+
+.ui.feed>.event {
+    margin-bottom: 10px !important;
+}
+
+.ui.feed>.event:hover {
+    background-color: #e8e8eb;
+}
+
+.chatting-room-title-part {
+    position: fixed;
+    /* top: 1.5rem; */
+    left: 210px;
+    background-color: #FFFFFF;
+}
+
+.chatting-room-title {
+    font-size: 2rem;
+    margin-left: 1rem;
+}
+
+.chatting-room-body-part {
+    margin-left: 1rem;
+    margin-right: 5rem;
+}
+
+.chatting-room-form-part {
+    margin-left: 1rem;
+    margin-right: 5rem;
+    position: fixed;
+    bottom: 20px;
+    background-color: #FFFFFF;
+    width: 100%
+}
+
+.chatting-room-form-part input {
+    line-height: 1.21428571em;
+    padding: .67857143em 1em;
+    font-size: 1em;
+    background: #fff;
+    border: 1px solid rgba(34, 36, 38, .15);
+    color: rgba(0, 0, 0, .87);
+    border-radius: .28571429rem;
+    width: 81.5%;
+}
+
+.chatting-item {
+    display: flex;
+    flex-direction: row;
+    margin-top: 10px;
+}
+
+.chatting-item:hover {
+    background-color: #e8e8eb;
+}
+
+.chatting-item img {
+    width: 50px;
+    height: 50px;
+}
+
+.chatting-item div {
+    margin-left: 10px;
+}
