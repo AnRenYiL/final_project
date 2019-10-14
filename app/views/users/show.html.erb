@@ -55,7 +55,32 @@
     </div>
     <div style="display:flex;justify-content:space-between;margin-bottom:10px;align-content:center;">
         <h2>Friend List</h2>
-        <button class="ui purple basic button" style="margin-right:10rem">Add New Friend</button>
+        <button class="ui purple basic button" id="addNewFriendBtn" style="margin-right:10rem">Add New Friend</button>
+    </div>
+    <div class="ui modal">
+        <i class="close icon"></i>
+        <div class="header">
+            Add New Friend
+        </div>
+        <div class="image content" style="min-height: 122px;">
+            <div class="user-add-new-friend">
+                <img style="display:none;width: 80px;height: 80px;">
+                <span style="display:none;line-height:80px">Nope~</span>
+            </div>
+            <div class="description ui form">
+                <div class="field">
+                    <label>User Name</label>
+                    <input type="text" style="width:70%" id="user_name" name="user_name" placeholder="Please input the user name">
+                    <button class="ui primary basic button" id="searchBtn">Search</button>
+                </div>
+            </div>
+        </div>
+        <div class="actions">
+            <div class="ui positive right labeled icon button" id="sendRequestBtn">
+                Send the request!
+                <i class="checkmark icon"></i>
+            </div>
+        </div>
     </div>
     <div class="ui link cards">
         <%1.upto(2) do%>
@@ -104,3 +129,31 @@
         <%end%>
     </div>
 </div>
+<script>
+$("#addNewFriendBtn").on("click",() => {
+    $('.ui.modal').modal('show');
+});
+$("#searchBtn").on('click',() =>{
+    $.ajax({
+             type: "GET",
+             url: "http://localhost:3000/users/getUserByUserName",
+             data: {user_name:$("#user_name").val()},
+             dataType: "json",
+             success: function(data){
+                         if (data.status == 200) {
+                             const img_url = data.user.picture_url.includes("http")?data.user.picture_url: "./images/"+data.user.picture_url;
+                             $(".user-add-new-friend > img").attr("src",img_url);
+                             $(".user-add-new-friend > span").css("display","none");
+                            $(".user-add-new-friend > img").css("display","block");
+                            
+                         } else {
+                             $(".user-add-new-friend > img").css("display","none");
+                             $(".user-add-new-friend > span").css("display","block")
+                         }
+                      }
+         });
+});
+$("#sendRequestBtn").on('click',() =>{
+    
+});
+</script>

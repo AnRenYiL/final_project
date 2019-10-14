@@ -30,7 +30,21 @@ class UsersController < ApplicationController
       else
         render :edit
       end
-    end  
+    end
+    
+    def getUserByUserName
+      if params[:user_name]
+        user = User.find_by(user_name: params[:user_name])
+        if user != nil
+          render json: {user: user, status: 200 }
+        else
+          render json:{ errors: "null" , status: 404}
+        end
+      else
+        render json:{ errors: "null", status: 404 }
+      end
+    end
+    
 
     private
     

@@ -38,6 +38,13 @@
     flex-direction: row;
 }
 
+.user-add-new-friend {
+    margin-left: 3rem;
+    margin-right: 5rem;
+    width: 80px;
+    height: 80px;
+}
+
 .request-list {
     max-height: 424px;
     margin-left: 2rem;
