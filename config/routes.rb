@@ -10,5 +10,7 @@ Rails.application.routes.draw do
   resources :sessions, only: [:new, :create] do
     delete :destroy, on: :collection
   end
-  resources :chanels
+  resources :chanels do
+    resources :messages
+  end
 end

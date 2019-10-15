@@ -78,26 +78,29 @@
 
 .chatting-room-title-part {
     position: fixed;
-    /* top: 1.5rem; */
-    left: 210px;
+    top: 0rem;
+    /* left: 210px; */
     background-color: #FFFFFF;
 }
 
 .chatting-room-title {
+    margin-top: 1.5rem !important;
     font-size: 2rem;
     margin-left: 1rem;
 }
 
 .chatting-room-body-part {
+    /* margin-top: 99px;
     margin-left: 1rem;
-    margin-right: 5rem;
+    margin-right: 5rem; */
+    margin: 99px 5rem 75px 1.5rem;
 }
 
 .chatting-room-form-part {
     margin-left: 1rem;
     margin-right: 5rem;
     position: fixed;
-    bottom: 20px;
+    bottom: 0px;
     background-color: #FFFFFF;
     width: 100%
 }
@@ -111,6 +114,7 @@
     color: rgba(0, 0, 0, .87);
     border-radius: .28571429rem;
     width: 81.5%;
+    margin-bottom: 20px;
 }
 
 .chatting-item {

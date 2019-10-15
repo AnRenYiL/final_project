@@ -5,7 +5,7 @@
     </div>
 </div>
 <div class="chatting-room-body-part">
-    <% 1.upto(4) do %>
+    <% 1.upto(7) do %>
     <div class="chatting-item">
             <%= image_tag  "81570909242_.pic_hd.jpg" %>
             <div>
@@ -29,6 +29,6 @@
     </div>
     <%end%>
 </div>
-<form class="chatting-room-form-part">
-        <input type="text" name="message" placeholder="new message">
-</form>
+<%= form_for([@chanel,@message], :html => {:class=>'chatting-room-form-part'}) do |f| %>
+    <%= f.text_field :body %>
+<% end %>
