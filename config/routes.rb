@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   get('/users/getUserByUserName', to: 'users#getUserByUserName')
   # users controller
   resources :users
-
+  resources :requests, only: [:create, :update]
   # sessions controller
   resources :sessions, only: [:new, :create] do
     delete :destroy, on: :collection

@@ -1,4 +1,12 @@
 <div class="show-user">
+    <div class="ui success hidden message">
+        <i class="close icon"></i>
+        <p>Request sent successly</p>
+    </div>
+    <div class="ui negative hidden message">
+        <i class="close icon"></i>
+        <p>Sorry, request sent unsuccessfully</p>
+    </div>
     <div class="user-info">
         <div class="ui card">
             <div class="image">
@@ -57,31 +65,6 @@
         <h2>Friend List</h2>
         <button class="ui purple basic button" id="addNewFriendBtn" style="margin-right:10rem">Add New Friend</button>
     </div>
-    <div class="ui modal">
-        <i class="close icon"></i>
-        <div class="header">
-            Add New Friend
-        </div>
-        <div class="image content" style="min-height: 122px;">
-            <div class="user-add-new-friend">
-                <img style="display:none;width: 80px;height: 80px;">
-                <span style="display:none;line-height:80px">Nope~</span>
-            </div>
-            <div class="description ui form">
-                <div class="field">
-                    <label>User Name</label>
-                    <input type="text" style="width:70%" id="user_name" name="user_name" placeholder="Please input the user name">
-                    <button class="ui primary basic button" id="searchBtn">Search</button>
-                </div>
-            </div>
-        </div>
-        <div class="actions">
-            <div class="ui positive right labeled icon button" id="sendRequestBtn">
-                Send the request!
-                <i class="checkmark icon"></i>
-            </div>
-        </div>
-    </div>
     <div class="ui link cards">
         <%1.upto(2) do%>
         <div class="card">
@@ -128,32 +111,33 @@
         </div>
         <%end%>
     </div>
+        <div class="ui modal">
+        <i class="close icon"></i>
+        <div class="header">
+            Add New Friend
+        </div>
+        <div class="image content" style="min-height: 122px;">
+            <div class="user-add-new-friend">
+                <img style="display:none;width: 80px;height: 80px;">
+                <span style="display:none;line-height:80px">Nope~</span>
+            </div>
+            <div class="description ui form">
+                <div class="field">
+                    <label>User Name</label>
+                    <input type="text" style="width:70%" id="user_name" name="user_name" placeholder="Please input the user name">
+                    <input type="hidden" id="receiver_id" value="">
+                    <button class="ui primary basic button" style="margin-left:2rem;" id="searchBtn">Search</button>
+                </div>
+            </div>
+        </div>
+        <div class="actions">
+            <button disabled="false" class="ui positive right labeled icon button" id="sendRequestBtn">
+                Send the request!
+                <i class="checkmark icon"></i>
+            </button>
+        </div>
+    </div>
 </div>
 <script>
-$("#addNewFriendBtn").on("click",() => {
-    $('.ui.modal').modal('show');
-});
-$("#searchBtn").on('click',() =>{
-    $.ajax({
-             type: "GET",
-             url: "http://localhost:3000/users/getUserByUserName",
-             data: {user_name:$("#user_name").val()},
-             dataType: "json",
-             success: function(data){
-                         if (data.status == 200) {
-                             const img_url = data.user.picture_url.includes("http")?data.user.picture_url: "./images/"+data.user.picture_url;
-                             $(".user-add-new-friend > img").attr("src",img_url);
-                             $(".user-add-new-friend > span").css("display","none");
-                            $(".user-add-new-friend > img").css("display","block");
-                            
-                         } else {
-                             $(".user-add-new-friend > img").css("display","none");
-                             $(".user-add-new-friend > span").css("display","block")
-                         }
-                      }
-         });
-});
-$("#sendRequestBtn").on('click',() =>{
-    
-});
+
 </script>
