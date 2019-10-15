@@ -24,7 +24,7 @@
                 </span>
                 <span>
                 <i class="heart icon"></i>
-                22 Friends
+                <%= pluralize(@friends_number, "Friend") %>
                 </span>
                 
             </div>
@@ -83,7 +83,7 @@
                     </div>
                     <div style="margin-right:1rem">
                     <% if request.is_accepted == nil%>
-                        <div class="ui purple basic label" style="line-height: 22px;width: 75.5px;text-align:center">Waiting</div>
+                        <div class="ui grey basic label" style="line-height: 22px;width: 75.5px;text-align:center">Waiting</div>
                     <% elsif  request.is_accepted == true %>
                         <div class="ui purple basic label" style="line-height: 22px;">
                             Approved
@@ -102,50 +102,23 @@
         <button class="ui purple basic button" id="addNewFriendBtn" style="margin-right:10rem">Add New Friend</button>
     </div>
     <div class="ui link cards">
-        <%1.upto(2) do%>
+        <% getFriendList.each do |friend| %>
         <div class="card">
             <div class="image">
-                <%= image_tag("81570909242_.pic_hd.jpg")%>
+                <%= image_tag(friend.picture_url)%>
             </div>
             <div class="content">
-            <div class="header">Matt Giampietro</div>
+            <div class="header"><%= friend.user_name%></div>
                 <div class="meta">
-                    Joined in 2013
+                    Joined in <%= friend.created_at.year%>
                 </div>
                 <div class="description">
-                    Matthew is an interior designer living in New York.
+                    <%= friend.description %>
                 </div>
             </div>
         </div>
-        <div class="card">
-            <div class="image">
-                <%= image_tag("91570909243_.pic.jpg")%>
-            </div>
-            <div class="content">
-            <div class="header">Molly</div>
-                <div class="meta">
-                    Joined in 2011
-                </div>
-                <div class="description">
-                    Molly is a personal assistant living in Paris.
-                </div>
-            </div>
-        </div>
-        <div class="card">
-            <div class="image">
-                <%= image_tag("101570909246_.pic_hd.jpg")%>
-            </div>
-            <div class="content">
-            <div class="header">Elyse</div>
-                <div class="meta">
-                    Joined in 2014
-                </div>
-                <div class="description">
-                    Elyse is a copywriter working in New York.
-                </div>
-            </div>
-        </div>
-        <%end%>
+        <% end %>
+
     </div>
     <div class="ui modal">
         <i class="close icon"></i>

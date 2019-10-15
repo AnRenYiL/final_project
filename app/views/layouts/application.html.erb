@@ -24,18 +24,9 @@
           <div class="item">
             <div class="header">Friends</div>
             <div class="menu">
-                <a class="item" href="/introduction/integrations.html">
-                  Alice
-                </a>
-                <a class="item" href="/introduction/build-tools.html">
-                  Hindreen
-                </a>
-                <a class="item" href="/introduction/advanced-usage.html">
-                  Naveed
-                </a>
-                <a class="item" href="/introduction/glossary.html">
-                  Brandon
-                </a>
+                <% getFriendList.each do |friend| %>
+                <%= link_to(friend.user_name, "/chanels/#{friend.chanel_id}", class:"item")%>
+                <% end %>
             </div>
           </div>
           <div class="item">

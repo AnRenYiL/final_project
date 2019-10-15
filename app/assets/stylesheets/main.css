@@ -42,6 +42,10 @@
     height: 290px !important;
 }
 
+.ui.cards>.card>.image:not(.ui)>img {
+    height: 290px !important;
+}
+
 .user-add-new-friend {
     margin-left: 3rem;
     margin-right: 5rem;
