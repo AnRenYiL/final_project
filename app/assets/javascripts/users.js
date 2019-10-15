@@ -37,9 +37,7 @@ $(function () {
 
     // send request to requests controller to create a new request
     $("#sendRequestBtn").on('click', () => {
-        $(".user-add-new-friend > span").css("display", "none");
-        $(".user-add-new-friend > img").css("display", "none");
-        $("#user_name").val('');
+
         $.ajax({
             type: "POST",
             url: `${APIURL}/requests/`,
@@ -47,12 +45,17 @@ $(function () {
             dataType: "json",
             success: function (data) {
                 if (data.status == 200) {
-                    $('.ui.success.hidden.message').removeClass("hidden");
-                } else {
-                    $('.ui.negative.hidden.message').removeClass("hidden");
+                    window.location = window.location;
                 }
-                $("#receiver_id").val('');
-                $("#receiver_id").change();
+                else {
+                    $('.ui.negative.hidden.message p').text(data.errors);
+                    $('.ui.negative.hidden.message').removeClass("hidden");
+                    $("#receiver_id").val('');
+                    $("#receiver_id").change();
+                    $(".user-add-new-friend > span").css("display", "none");
+                    $(".user-add-new-friend > img").css("display", "none");
+                    $("#user_name").val('');
+                }
             }
         });
     });
@@ -67,10 +70,22 @@ $(function () {
         }
     });
 
-    $('.message .close')
-        .on('click', function () {
-            $(this)
-                .closest('.message')
-                .transition('fade');
-        });
-})
+    $('.message .close').on('click', function () {
+        $(this)
+            .closest('.message')
+            .transition('fade');
+    });
+
+});
+
+function changeFriend(is_accepted, sender_id, request_id) {
+    $.ajax({
+        type: "PATCH",
+        url: `${APIURL}/requests/${request_id}`,
+        data: { sender_id, is_accepted },
+        dataType: "json",
+        success: function (data) {
+            window.location = window.location;
+        }
+    });
+}

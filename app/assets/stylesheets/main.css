@@ -38,6 +38,10 @@
     flex-direction: row;
 }
 
+.ui.card>.image>img {
+    height: 290px !important;
+}
+
 .user-add-new-friend {
     margin-left: 3rem;
     margin-right: 5rem;
@@ -51,6 +55,8 @@
     margin-right: 5rem;
     width: 900px;
     overflow-y: auto;
+    border: 1px solid purple;
+    padding: 10px;
 }
 
 .ui.feed>.event {
@@ -59,6 +65,11 @@
 
 .ui.feed>.event:hover {
     background-color: #e8e8eb;
+}
+
+.ui.feed>.event>.label img {
+    width: 35px !important;
+    height: 35px !important;
 }
 
 .chatting-room-title-part {

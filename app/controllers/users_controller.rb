@@ -17,7 +17,10 @@ class UsersController < ApplicationController
     end
 
     def show
-      
+      @requests_from = Request.select("users.id as user_id, users.user_name, users.picture_url, requests.*").joins("INNER JOIN users ON users.id = requests.sender_id").where("receiver_id = #{current_user.id}")
+      @requests_to = Request.select("users.user_name, users.picture_url, requests.*").joins("INNER JOIN users ON users.id = requests.receiver_id").where("sender_id = #{current_user.id}")
+      # requests_from + requests_to
+      # byebug
     end
     
     def edit

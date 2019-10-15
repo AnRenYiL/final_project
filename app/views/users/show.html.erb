@@ -1,11 +1,7 @@
 <div class="show-user">
-    <div class="ui success hidden message">
-        <i class="close icon"></i>
-        <p>Request sent successly</p>
-    </div>
     <div class="ui negative hidden message">
         <i class="close icon"></i>
-        <p>Sorry, request sent unsuccessfully</p>
+        <p></p>
     </div>
     <div class="user-info">
         <div class="ui card">
@@ -18,7 +14,7 @@
                 <span class="date">Joined in <%= @user.created_at.year%></span>
                 </div>
                 <div class="description">
-                    <%= @user.description%>
+                    <%= @user.description %>
                 </div>
             </div>
             <div class="extra content">
@@ -34,30 +30,70 @@
             </div>
         </div>
         <div class="request-list">
+            
             <div class="ui feed">
-                <%1.upto(10) do%>
+                <% @requests_from.each do |request|%>
                 <div class="event">
                     <div class="label">
-                        <%= image_tag("111570909248_.pic_hd.jpg")%>
+                        <%= image_tag(request.picture_url)%>
                     </div>
                     <div class="content">
                         <div class="summary">
                             <span class="ui purple label">
-                            Elliot Fu
+                            <%= request.user_name%>
                             </span> wants to add you as a friend
                             <div class="date">
-                            1 Hour Ago
+                            <%= time_ago_in_words(request.created_at) %> Ago
                             </div>
                             
                         </div>
                     </div>
                     <div class="ui buttons" style="margin-right:1rem">
-                        <button class="ui basic red button">Decline</button>
+                    <% if request.is_accepted == nil%>
+                        <button class="ui basic red button" onclick="changeFriend(false,<%= request.user_id %>,<%= request.id %>)">Decline</button>
                         <div class="or"></div>
-                        <button class="ui basic green button">Approve</button>
+                        <button class="ui basic green button" onclick="changeFriend(true,<%= request.user_id %>,<%= request.id %>)">Approve</button>
+                    <% elsif  request.is_accepted == true %>
+                        <div class="ui purple basic label" style="line-height: 22px;">
+                            Approved
+                        </div>
+                    <% else %>
+                        <div class="ui red basic label" style="line-height: 22px;width: 75.5px">Declined</div>
+                    <% end %>
                     </div>
                 </div>
-                <%end%>
+                <% end %>
+                <% @requests_to.each do |request|%>
+                <div class="event">
+                    <div class="label">
+                        <%= image_tag(current_user.picture_url)%>
+                    </div>
+                    <div class="content">
+                        <div class="summary">
+                            You sent a friend request to 
+                            <span class="ui purple image label" style="margin-top: -13px;">
+                                <%= image_tag(request.picture_url)%>
+                                <%= request.user_name%>
+                            </span>
+                            <div class="date">
+                            <%= time_ago_in_words(request.created_at) %> Ago
+                            </div>
+                            
+                        </div>
+                    </div>
+                    <div style="margin-right:1rem">
+                    <% if request.is_accepted == nil%>
+                        <div class="ui purple basic label" style="line-height: 22px;width: 75.5px;text-align:center">Waiting</div>
+                    <% elsif  request.is_accepted == true %>
+                        <div class="ui purple basic label" style="line-height: 22px;">
+                            Approved
+                        </div>
+                    <% else %>
+                        <div class="ui red basic label" style="line-height: 22px;width: 75.5px">Declined</div>
+                    <% end %>
+                    </div>
+                </div>
+                <% end %>
             </div>
         </div>
     </div>
@@ -111,7 +147,7 @@
         </div>
         <%end%>
     </div>
-        <div class="ui modal">
+    <div class="ui modal">
         <i class="close icon"></i>
         <div class="header">
             Add New Friend
