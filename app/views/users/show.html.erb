@@ -148,5 +148,15 @@
     </div>
 </div>
 <script>
-
+function changeFriend(is_accepted, sender_id, request_id) {
+    $.ajax({
+        type: "PATCH",
+        url: `http://localhost:3000/requests/${request_id}`,
+        data: { sender_id, is_accepted },
+        dataType: "json",
+        success: function (data) {
+            window.location = window.location;
+        }
+    });
+}
 </script>

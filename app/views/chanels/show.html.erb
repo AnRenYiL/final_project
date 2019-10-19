@@ -11,6 +11,5 @@
 </div>
 
 <%= form_with model: [@chanel, @message], class: "chatting-room-form-part", remote: true do |f|%>
-        <%= f.label :body%>
-        <%= f.text_field :body%>
+        <%= f.text_field :body, placeholder: "message"%>
 <%end%>
