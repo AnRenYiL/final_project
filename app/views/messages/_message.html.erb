@@ -1,0 +1,7 @@
+<div class="chatting-item">
+    <%= image_tag  message.user.picture_url %>
+    <div>
+        <strong><%= message.user.user_name %></strong><small><%= message.created_at.localtime.to_date == Time.new.localtime.to_date ? message.created_at.localtime.strftime("%I:%M %p") : message.created_at.localtime.strftime("%b %w %I:%M %p")%></small>
+        <p><%= message.body %></p>
+    </div>
+</div>

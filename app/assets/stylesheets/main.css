@@ -135,3 +135,16 @@
 .chatting-item div {
     margin-left: 10px;
 }
+
+.chatting-item div strong {
+    font-size: 1.3rem;
+}
+
+.chatting-item div small {
+    margin-left: 5px;
+}
+
+.chatting-item div p {
+    margin-top: 5px;
+    font-size: 1.1rem;
+}

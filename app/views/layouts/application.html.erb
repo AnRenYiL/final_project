@@ -6,7 +6,8 @@
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag 'application', media: 'all' %>
-    <%= javascript_include_tag 'application' %>
+    <%= javascript_pack_tag 'application' %>
+    <%= action_cable_meta_tag %>
   </head>
 
   <body class="main-body">
@@ -25,7 +26,7 @@
             <div class="header">Friends</div>
             <div class="menu">
                 <% getFriendList.each do |friend| %>
-                <%= link_to(friend.user_name, "/chanels/#{friend.chanel_id}", class:"item")%>
+                <%= link_to(friend.user_name, "/chanels/#{friend.chanel_id}", class:"item",data:{behavior: "chatroom-link", chatroom_id: friend.chanel_id})%>
                 <% end %>
             </div>
           </div>

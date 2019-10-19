@@ -2,7 +2,7 @@ class ChanelsController < ApplicationController
     before_action :authenticate_user!
     before_action :find_chanel, only: [:show, :destroy]
     def show
-        @message = Message.new
+      @message = Message.new
     end
     
     private
