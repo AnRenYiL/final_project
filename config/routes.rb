@@ -12,6 +12,8 @@ Rails.application.routes.draw do
   end
   resources :chanels do
     resources :messages
+    
   end
+  get('/messages/getMoreMsg', to: 'messages#getMoreMsg')
   # mount ActionCable.server => '/cable'
 end

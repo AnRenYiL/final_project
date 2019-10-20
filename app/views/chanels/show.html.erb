@@ -5,7 +5,7 @@
     </div>
 </div>
 <div class="chatting-room-body-part" data-chatroom-id="<%= @chanel.id %>">
-    <% @chanel.messages.order(created_at:"asc").limit(100).each do |message| %>
+    <% @messages.each do |message| %>
     <%= render message%>
     <% end %>
 </div>
@@ -14,5 +14,32 @@
         <%= f.text_field :body, placeholder: "message", autofocus:true%>
 <%end%>
 <script>
-window.scrollTo(0, document.querySelector('.chatting-room-body-part').scrollHeight)
+window.scrollTo(0, document.querySelector('.chatting-room-body-part').scrollHeight);
+var load = true;
+window.onscroll = function () {
+    var scrollTop = document.body.scrollTop || document.documentElement.scrollTop;
+    var winHeight = window.innerHeight;
+    if (load && scrollTop <= 303) {
+        load = false;
+        const first_id = $(".chatting-room-body-part").children(":first").attr("id");
+        const chanel_id = $(".chatting-room-body-part").attr("data-chatroom-id");
+        $.ajax({
+            type: "GET",
+            url: `http://localhost:3000/messages/getMoreMsg`,
+            data: { first_id, chanel_id },
+            dataType: "json",
+            success: function (data) {
+                if (data.status == 200) {
+                    $(".chatting-room-body-part").prepend(data.messages);
+                    load = true;
+                }
+            }
+        });
+    }
+    // for(var i = 0; i < imgs.length; i++) {
+    //     if (imgs[i].offsetTop < scrollTop + winHeight) {
+    //         imgs[i].src = imgs[i].getAttribute('data-src');
+    //     }
+    // }
+}
 </script>

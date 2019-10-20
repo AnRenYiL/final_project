@@ -3,6 +3,7 @@ class ChanelsController < ApplicationController
     before_action :find_chanel, only: [:show, :destroy]
     def show
       @message = Message.new
+      @messages = @chanel.messages.order(created_at:"desc").limit(20).reverse
     end
     
     private

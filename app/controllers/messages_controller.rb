@@ -17,6 +17,27 @@ class MessagesController < ApplicationController
         #     chatroom_id: message.chanel_id
         # }
     end
+
+    def getMoreMsg
+        if params[:first_id]
+            id_limit = params[:first_id].to_i  - 20
+            chanel = Chanel.find(params[:chanel_id])
+            messages = chanel.messages.where("id<#{id_limit}").order(created_at:"desc").limit(10).reverse
+            html = ""
+            messages.each do |message|
+                user = message.user
+                created_date = message.created_at.localtime
+                html += 
+                "<div  class='chatting-item' id='#{message.id}'><img src='/assets/#{user.picture_url}'><div><strong>#{user.user_name}</strong><small>#{created_date.to_date == Time.new.localtime.to_date ? created_date.strftime("%I:%M %p") : created_date.strftime("%b %w %I:%M %p")}</small><p>#{message.body}</p></div></div>"
+            end
+            if html != ""
+                render json: {messages: html, status: 200 }
+            else
+                render json: {messages: nil, status: 204 }
+            end
+        end
+    end
+    
     
 
     private
