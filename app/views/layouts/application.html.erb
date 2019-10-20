@@ -21,13 +21,16 @@
           </div>
           <% if user_signed_in?%>
           <div class="item">
-            <%= link_to  current_user.user_name, user_path(current_user) %>
+            <%= link_to  current_user.user_name, user_path(current_user), class:"user-name-label" %>
           </div>
           <div class="item">
             <div class="header">Friends</div>
             <div class="menu">
                 <% getFriendList.each do |friend| %>
-                <%= link_to(friend.user_name, "/chanels/#{friend.chanel_id}", class:"item",data:{behavior: "chatroom-link", chatroom_id: friend.chanel_id})%>
+                <a class="item" href="/chanels/<%= friend.chanel_id%>" data-behavior="chatroom-link" data-chatroom-id="<%= friend.chanel_id%>">
+                  <span><%= friend.user_name%></span>
+                </a>
+                <%#= link_to(friend.user_name, "/chanels/#{friend.chanel_id}", class:"item",data:{behavior: "chatroom-link", chatroom_id: friend.chanel_id})%>
                 <% end %>
             </div>
           </div>
@@ -35,16 +38,17 @@
             <div class="header">Group</div>
             <div class="menu">
                 <a class="item" href="/introduction/integrations.html">
-                  Cohort 33
+                  <span>Cohort 33</span>
+                  <label class="ui purple circular label">2</label>
                 </a>
                 <a class="item" href="/introduction/build-tools.html">
-                  Group Project
+                  <span>Cohort 33</span>
                 </a>
                 <a class="item" href="/introduction/advanced-usage.html">
-                  Events
+                  <span>Cohort 33</span>
                 </a>
                 <a class="item" href="/introduction/glossary.html">
-                  Jobs
+                  <span>Cohort 33</span>
                 </a>
             </div>
           </div>
@@ -59,4 +63,15 @@
         <%= yield %>
       </div>
   </body>
+  <script>
+      Notification.requestPermission();
+    document.addEventListener("visibilitychange", function() {
+    // console.log(document.visibilityState);
+    // if(document.visibilityState == "hidden") {
+    //     console.log('隐藏');
+    // } else if (document.visibilityState == "visible") {
+    //     console.log('显示')
+    // }
+    });
+  </script>
 </html>

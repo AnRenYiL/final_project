@@ -4,6 +4,10 @@
     background-color: #FFFFFF;
 }
 
+.user-name-label {
+    font-size: 1.2rem !important;
+}
+
 .menu-list {
     position: fixed;
     z-index: 1;
@@ -13,6 +17,15 @@
     -webkit-flex: 0 0 auto;
     -ms-flex: 0 0 auto;
     flex: 0 0 auto;
+}
+
+.item>.header {
+    font-size: 1.2rem !important;
+}
+
+.menu>.item>span {
+    font-size: 1.08rem;
+    line-height: 24px;
 }
 
 .main-container {
