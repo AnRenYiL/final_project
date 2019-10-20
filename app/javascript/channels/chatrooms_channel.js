@@ -13,12 +13,14 @@ consumer.subscriptions.create("ChatroomsChannel", {
     if (activeChatroom) {
       activeChatroom.appendChild(document.createRange().createContextualFragment(data.message));
     } else {
-
+      // document.querySelector(`[data-behavior='chatroom-link'][data-chatroom-id='${data.chatroom_id}']`)
+      $(`[data-behavior='chatroom-link'][data-chatroom-id='${data.chatroom_id}']`).append('<i class="comment purple icon"></i>');
+      // 
     }
     if (document.visibilityState == "hidden") {
       const img_url = $(data.message).children("img")[0].src;
       const childDiv = $(data.message).children("div");
-      let a = new Notification(`${childDiv.children("strong")[0].innerText}: `, {
+      let notification = new Notification(`${childDiv.children("strong")[0].innerText}: `, {
         body: childDiv.children("p")[0].innerText,
         icon: img_url,
         renotify: true,
@@ -26,9 +28,9 @@ consumer.subscriptions.create("ChatroomsChannel", {
         silent: true
       });
       setTimeout(function () {
-        a.close();
+        notification.close();
       }, 5000);
-      // document.querySelector(`[data-behavior='chatroom-link'][data-chatroom-id='${data.chatroom_id}']`)
+
     }
 
     // Called when there's incoming data on the websocket for this channel

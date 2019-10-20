@@ -11,5 +11,8 @@
 </div>
 
 <%= form_with model: [@chanel, @message], class: "chatting-room-form-part", remote: true do |f|%>
-        <%= f.text_field :body, placeholder: "message"%>
+        <%= f.text_field :body, placeholder: "message", autofocus:true%>
 <%end%>
+<script>
+window.scrollTo(0, document.querySelector('.chatting-room-body-part').scrollHeight)
+</script>
