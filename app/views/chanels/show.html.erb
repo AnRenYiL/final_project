@@ -1,5 +1,5 @@
 <div class="chatting-room-title-part">
-    <h1 class="chatting-room-title">Chat Room</h1>
+    <h1 class="chatting-room-title"><%= @title %></h1>
     <div class="ui horizontal divider">
         Messages
     </div>
@@ -36,10 +36,5 @@ window.onscroll = function () {
             }
         });
     }
-    // for(var i = 0; i < imgs.length; i++) {
-    //     if (imgs[i].offsetTop < scrollTop + winHeight) {
-    //         imgs[i].src = imgs[i].getAttribute('data-src');
-    //     }
-    // }
 }
 </script>

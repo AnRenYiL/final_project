@@ -1,6 +1,6 @@
 class RequestsController < ApplicationController
     def create
-        if(params[:receiver_id] && params[:receiver_id] != current_user.id)
+        if(params[:receiver_id] && params[:receiver_id].to_i != current_user.id)
             not_request = Request.where("((sender_id = #{current_user.id} AND receiver_id = #{params[:receiver_id]}) OR (sender_id = #{params[:receiver_id]} AND receiver_id = #{current_user.id})) AND (is_accepted != false OR is_accepted is null)").count == 0
             if not_request
                 request = Request.new(:receiver_id => params[:receiver_id],:sender_id => current_user.id, :is_accepted => nil)

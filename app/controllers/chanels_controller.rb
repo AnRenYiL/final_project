@@ -4,6 +4,11 @@ class ChanelsController < ApplicationController
     def show
       @message = Message.new
       @messages = @chanel.messages.order(created_at:"desc").limit(20).reverse
+      @title = @chanel.title
+      if @title == nil
+        channel_user = @chanel.chanel_users.where("user_id != #{current_user.id}")
+        @title = User.find(channel_user[0].user_id).user_name
+      end
     end
     
     def new
