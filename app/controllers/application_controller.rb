@@ -24,4 +24,13 @@ class ApplicationController < ActionController::Base
       @friends
     end
     helper_method :getFriendList
+
+    def getGroupChannels
+      @group_chanels = []
+      if current_user.present?
+        @group_chanels = current_user.group_chanels
+      end
+      @group_chanels
+    end
+    helper_method :getGroupChannels
 end

@@ -19,7 +19,7 @@
     flex: 0 0 auto;
 }
 
-.item>.header {
+.menu>.item>.header {
     font-size: 1.2rem !important;
 }
 
@@ -42,7 +42,8 @@
     margin: 2rem 5rem 2rem 3rem;
 }
 
-.show-user {
+.show-user,
+.show-channel {
     margin: 1rem 5rem 2rem 3rem;
 }
 

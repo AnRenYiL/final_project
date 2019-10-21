@@ -20,13 +20,12 @@ const APIURL = "http://localhost:3000";
 $(function () {
     // show the popup window
     $("#addNewFriendBtn").on("click", () => {
-        $('.ui.modal')
+        $('#add_new_friend_modal')
             .modal({
                 blurring: true
             })
             .modal('show');
     });
-
     // search the user by user_name if it can't find the user show "Nope", 
     // otherwise show the user's photo
     $("#searchBtn").on('click', () => {
@@ -37,7 +36,8 @@ $(function () {
             dataType: "json",
             success: function (data) {
                 if (data.status == 200) {
-                    $(".user-add-new-friend > img").attr("src", data.user.picture_url);
+                    const img_url = data.user.picture_url.includes("http") ? data.user.picture_url : "./images/" + data.user.picture_url;
+                    $(".user-add-new-friend > img").attr("src", img_url);
                     $(".user-add-new-friend > span").css("display", "none");
                     $(".user-add-new-friend > img").css("display", "block");
                     $("#receiver_id").val(data.user.id);
@@ -92,7 +92,35 @@ $(function () {
             .closest('.message')
             .transition('fade');
     });
-
+    // show the add new channel window
+    $("#add_new_channel").on("click", () => {
+        $('#add_new_channel_modal')
+            .modal({
+                blurring: true
+            })
+            .modal('show');
+    });
+    $("#add_new_channel_btn").on("click", () => {
+        const checkList = document.querySelectorAll('input[type="checkbox"]');
+        let id_list = [];
+        checkList.forEach(e => {
+            if ($(e)[0].checked) {
+                id_list.push($(e).val());
+            }
+        });
+        const channel_name = $("#channel_name").val();
+        $.ajax({
+            type: "POST",
+            url: `${APIURL}/chanels/`,
+            data: { channel_name, id_list },
+            dataType: "json",
+            success: function (data) {
+                if (data.status == 200) {
+                    window.location.reload();
+                }
+            }
+        });
+    });
 });
 
 

@@ -35,20 +35,20 @@
             </div>
           </div>
           <div class="item">
-            <div class="header">Group</div>
+              <a href="#" id="add_new_channel" >
+                  <i class="plus square outline icon"></i>
+                  <span>Add new channel</span>
+              </a>
+              
+          </div>
+          <div class="item">
+            <div class="header">Groups</div>
             <div class="menu">
-                <a class="item" href="/introduction/integrations.html">
-                  <span>Cohort 33</span>
+                <% getGroupChannels.each do |group_channel| %>
+                <a class="item" href="/chanels/<%= group_channel.id%>" data-behavior="chatroom-link" data-chatroom-id="<%= group_channel.id%>">
+                  <span><%= group_channel.title%></span>
                 </a>
-                <a class="item" href="/introduction/build-tools.html">
-                  <span>Cohort 33</span>
-                </a>
-                <a class="item" href="/introduction/advanced-usage.html">
-                  <span>Cohort 33</span>
-                </a>
-                <a class="item" href="/introduction/glossary.html">
-                  <span>Cohort 33</span>
-                </a>
+                <% end %>
             </div>
           </div>
           <% else %>
@@ -60,6 +60,47 @@
 
       <div class="main-container" >
         <%= yield %>
+      </div>
+      <div class="ui small modal" id="add_new_channel_modal">
+        <div class="header">Add new channel</div>
+        <div class="content">
+          <div class="ui form">
+            <div class="field">
+              <label>Channel Name</label>
+              <input type="text" placeholder="Channel Name" id="channel_name">
+            </div>
+          </div>
+          <div class="ui list">
+            <% if user_signed_in?%>
+            <% getFriendList.each do |friend| %>
+            <div class="item">
+                <%= image_tag(friend.picture_url, class:"ui avatar image")%>
+                <div class="content" >
+                  <div>
+                    <span class="header"><%= friend.user_name%></span>
+                    <div class="description">
+                      <label ><%= friend.description%></label>
+                      <div class="ui toggle checkbox">
+                        <input type="checkbox" value="<%= friend.id%>">
+                        <label>add</label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+            </div>
+            <% end %>
+            <% end %>
+          </div>
+        </div>
+          <div class="actions">
+            <div class="ui black deny button">
+              Cancel
+            </div>
+            <div class="ui positive right labeled icon button" id="add_new_channel_btn">
+              Add
+              <i class="checkmark icon"></i>
+            </div>
+          </div>
       </div>
   </body>
   <script>
