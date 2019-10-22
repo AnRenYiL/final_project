@@ -33,4 +33,16 @@ class ApplicationController < ActionController::Base
       @group_chanels
     end
     helper_method :getGroupChannels
+
+    def updateLastCheckTime(channel_id)
+      # byebug
+      if session[:channel_id] 
+        channel_user = ChanelUser.where("user_id = #{current_user.id} AND chanel_id = #{session[:channel_id]}")[0]
+        channel_user.update(last_check: Time.new)
+      end
+      if channel_id
+        session[:channel_id] = channel_id
+      end
+    end
+    helper_method :updateLastCheckTime
 end

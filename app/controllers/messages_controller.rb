@@ -20,9 +20,8 @@ class MessagesController < ApplicationController
 
     def getMoreMsg
         if params[:first_id]
-            id_limit = params[:first_id].to_i  - 20
             chanel = Chanel.find(params[:chanel_id])
-            messages = chanel.messages.where("id<#{id_limit}").order(created_at:"desc").limit(10).reverse
+            messages = chanel.messages.where("id<#{params[:first_id].to_i}").order(created_at:"desc").limit(20).reverse
             html = ""
             messages.each do |message|
                 user = message.user

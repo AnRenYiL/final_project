@@ -29,8 +29,8 @@ class RequestsController < ApplicationController
             if request.update(:is_accepted => params[:is_accepted])
                 if params[:is_accepted]
                     chanel = Chanel.create(:is_group => false)
-                    chanel_user_sender = ChanelUser.create(:chanel_id => chanel.id, :user_id => current_user.id)
-                    chanel_user_receiver = ChanelUser.create(:chanel_id => chanel.id, :user_id => params[:sender_id])
+                    chanel_user_sender = ChanelUser.create(:chanel_id => chanel.id, :user_id => current_user.id, :last_check => Time.new)
+                    chanel_user_receiver = ChanelUser.create(:chanel_id => chanel.id, :user_id => params[:sender_id], :last_check => Time.new)
                 end
                 render json:{ status: 200 }
             else

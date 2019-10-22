@@ -8,6 +8,15 @@
     <% @messages.each do |message| %>
     <%= render message%>
     <% end %>
+    
+    <% if @unread_messages.length>0 %>
+        <div class="ui horizontal divider" style="color: purple;">
+            New Messages
+        </div>
+        <% @unread_messages.each do |message| %>
+        <%= render message%>
+        <% end %>
+    <% end %>
 </div>
 
 <%= form_with model: [@chanel, @message], class: "chatting-room-form-part", remote: true do |f|%>
