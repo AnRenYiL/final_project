@@ -29,6 +29,7 @@
                 <% getFriendList.each do |friend| %>
                 <a class="item" href="/chanels/<%= friend.chanel_id%>" data-behavior="chatroom-link" data-chatroom-id="<%= friend.chanel_id%>">
                   <span><%= friend.user_name%></span>
+                  <i class="comment purple icon" style='display: <%= un_read_msg(friend.chanel_id) ? "block" : "none"%>;'></i>
                 </a>
                 <%#= link_to(friend.user_name, "/chanels/#{friend.chanel_id}", class:"item",data:{behavior: "chatroom-link", chatroom_id: friend.chanel_id})%>
                 <% end %>
@@ -47,6 +48,7 @@
                 <% getGroupChannels.each do |group_channel| %>
                 <a class="item" href="/chanels/<%= group_channel.id%>" data-behavior="chatroom-link" data-chatroom-id="<%= group_channel.id%>">
                   <span><%= group_channel.title%></span>
+                  <i class="comment purple icon" style="display: none;"></i>
                 </a>
                 <% end %>
             </div>

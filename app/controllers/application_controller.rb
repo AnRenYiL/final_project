@@ -45,4 +45,16 @@ class ApplicationController < ActionController::Base
       end
     end
     helper_method :updateLastCheckTime
+
+    def un_read_msg(channel_id)
+      channel_user = ChanelUser.where("user_id = #{current_user.id} AND chanel_id = #{channel_id}")[0]
+      channel = Chanel.find(channel_id)
+      msg_number = channel.messages.where("created_at > '#{channel_user.last_check}' AND user_id != #{current_user.id} ").count()
+      if msg_number > 0
+        return true
+      else
+        return false
+      end
+    end
+    helper_method :un_read_msg
 end

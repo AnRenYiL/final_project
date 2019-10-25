@@ -12,11 +12,10 @@ consumer.subscriptions.create("ChatroomsChannel", {
     const activeChatroom = document.querySelector(`.chatting-room-body-part[data-chatroom-id='${data.chatroom_id}']`);
     if (activeChatroom) {
       activeChatroom.appendChild(document.createRange().createContextualFragment(data.message));
+      window.scrollTo(0, document.querySelector('.chatting-room-body-part').scrollHeight);
     } else {
       // document.querySelector(`[data-behavior='chatroom-link'][data-chatroom-id='${data.chatroom_id}']`)
-      if ($(`[data-behavior='chatroom-link'][data-chatroom-id='${data.chatroom_id}'] > .icon`).length == 0) {
-        $(`[data-behavior='chatroom-link'][data-chatroom-id='${data.chatroom_id}']`).append('<i class="comment purple icon"></i>');
-      }
+      $(`[data-behavior='chatroom-link'][data-chatroom-id='${data.chatroom_id}'] > .icon`).show();
     }
     if (document.visibilityState == "hidden") {
       const img_url = $(data.message).children("img")[0].src;
