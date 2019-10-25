@@ -14,8 +14,9 @@ consumer.subscriptions.create("ChatroomsChannel", {
       activeChatroom.appendChild(document.createRange().createContextualFragment(data.message));
     } else {
       // document.querySelector(`[data-behavior='chatroom-link'][data-chatroom-id='${data.chatroom_id}']`)
-      $(`[data-behavior='chatroom-link'][data-chatroom-id='${data.chatroom_id}']`).append('<i class="comment purple icon"></i>');
-      // 
+      if ($(`[data-behavior='chatroom-link'][data-chatroom-id='${data.chatroom_id}'] > .icon`).length == 0) {
+        $(`[data-behavior='chatroom-link'][data-chatroom-id='${data.chatroom_id}']`).append('<i class="comment purple icon"></i>');
+      }
     }
     if (document.visibilityState == "hidden") {
       const img_url = $(data.message).children("img")[0].src;

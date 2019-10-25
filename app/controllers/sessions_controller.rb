@@ -16,6 +16,8 @@ class SessionsController < ApplicationController
   
     def destroy
       session[:user_id] = nil
+      cookies[:user_id] = nil
+      session[:channel_id] = nil
       redirect_to root_path, notice: "Logged out!"
     end
 end
