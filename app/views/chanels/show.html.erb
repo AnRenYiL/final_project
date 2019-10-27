@@ -1,5 +1,15 @@
 <div class="chatting-room-title-part">
+<div style="display:flex;justify-content: space-between;align-items: center;">
     <h1 class="chatting-room-title"><%= @title %></h1>
+    <% if(@chanel.is_group)%>
+    <div id="members" style="margin-right:1rem;height:0px;">
+    <i class="user icon"></i>
+      <%= @members.length %> Members
+    </div>  
+    <% end %>
+
+</div>  
+    
     <div class="ui horizontal divider">
         Messages
     </div>
@@ -22,6 +32,36 @@
 <%= form_with model: [@chanel, @message], class: "chatting-room-form-part", remote: true do |f|%>
         <%= f.text_field :body, placeholder: "message", autofocus:true%>
 <%end%>
+<% if(!@chanel.is_group)%>
+<div class="ui modal" id="chatting_user_details">
+  <i class="close icon"></i>
+  <div class="header">
+    Profile Picture
+  </div>
+  <div class="image content">
+    <div class="ui medium image">
+      <%= image_tag(@chatting_user.picture_url, style:"height:300px;width:300px")%>
+    </div>
+    <div class="description">
+      <div class="ui header"><%= @chatting_user.user_name %></div>
+      <p><%= @chatting_user.description %></p>
+    </div>
+  </div>
+</div>
+<% else %>
+<div class="ui mini modal" id="member_list" >
+  <div class="header">Member List</div>
+  <div class="content" style="display:flex;flex-wrap:wrap;">
+    <% @members.each do |member| %>
+    <span class="ui basic label" style="margin-bottom:10px;">
+      <%= image_tag(member.picture_url)%>
+      <%= member.user_name %>
+    </span>
+    <% end %>
+  </div>
+</div>
+  
+<% end %>
 <script>
 window.scrollTo(0, document.querySelector('.chatting-room-body-part').scrollHeight);
 var load = true;
@@ -45,5 +85,11 @@ window.onscroll = function () {
             }
         });
     }
-}
+};
+$(".chatting-room-title").on("click",()=>{
+    $('#chatting_user_details').modal('show');
+});
+$("#members").on("click",()=>{
+    $('#member_list').modal('show');
+});
 </script>

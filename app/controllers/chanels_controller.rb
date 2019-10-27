@@ -11,7 +11,11 @@ class ChanelsController < ApplicationController
       updateLastCheckTime(@chanel.id)
       if @title == nil
         channel_user = @chanel.chanel_users.where("user_id != #{current_user.id}")
-        @title = User.find(channel_user[0].user_id).user_name
+        # @title = User.find(channel_user[0].user_id).user_name
+        @chatting_user = User.find(channel_user[0].user_id)
+        @title = @chatting_user.user_name
+      else
+        @members = @chanel.members
       end
     end
     
