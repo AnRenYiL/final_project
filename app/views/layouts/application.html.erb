@@ -48,7 +48,7 @@
                 <% getGroupChannels.each do |group_channel| %>
                 <a class="item" href="/chanels/<%= group_channel.id%>" data-behavior="chatroom-link" data-chatroom-id="<%= group_channel.id%>">
                   <span><%= group_channel.title%></span>
-                  <i class="comment purple icon" style="display: none;"></i>
+                  <i class="comment purple icon" style='display: <%= un_read_msg(group_channel.id) ? "block" : "none"%>;'></i>
                 </a>
                 <% end %>
             </div>
