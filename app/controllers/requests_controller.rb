@@ -27,7 +27,7 @@ class RequestsController < ApplicationController
             # end
             request = Request.find(params[:id])
             if request.update(:is_accepted => params[:is_accepted])
-                if params[:is_accepted]
+                if params[:is_accepted] == "true"
                     chanel = Chanel.create(:is_group => false)
                     chanel_user_sender = ChanelUser.create(:chanel_id => chanel.id, :user_id => current_user.id, :last_check => Time.new)
                     chanel_user_receiver = ChanelUser.create(:chanel_id => chanel.id, :user_id => params[:sender_id], :last_check => Time.new)

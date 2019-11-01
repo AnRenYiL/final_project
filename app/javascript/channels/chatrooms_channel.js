@@ -14,7 +14,6 @@ consumer.subscriptions.create("ChatroomsChannel", {
       activeChatroom.appendChild(document.createRange().createContextualFragment(data.message));
       window.scrollTo(0, document.querySelector('.chatting-room-body-part').scrollHeight);
     } else {
-      // document.querySelector(`[data-behavior='chatroom-link'][data-chatroom-id='${data.chatroom_id}']`)
       $(`[data-behavior='chatroom-link'][data-chatroom-id='${data.chatroom_id}'] > .icon`).show();
     }
     if (document.visibilityState == "hidden") {

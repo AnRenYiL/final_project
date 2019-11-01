@@ -80,9 +80,9 @@
                 <div class="content" >
                   <div>
                     <span class="header"><%= friend.user_name%></span>
-                    <div class="description">
-                      <label ><%= friend.description%></label>
-                      <div class="ui toggle checkbox">
+                    <div class="description friend-modal">
+                      <label class="friend-description"><%= friend.description%></label>
+                      <div class="ui toggle checkbox friend-toggles">
                         <input type="checkbox" value="<%= friend.id%>">
                         <label>add</label>
                       </div>

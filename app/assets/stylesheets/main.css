@@ -8,6 +8,22 @@
     font-size: 1.2rem !important;
 }
 
+.friend-description {
+    width: 30em !important;
+    display: inline-block;
+}
+
+.friend-modal {
+    display: flex !important;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.friend-toggles {
+    width: 50%;
+}
+
 .menu-list {
     position: fixed;
     z-index: 1;
