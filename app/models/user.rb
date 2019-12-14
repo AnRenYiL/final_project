@@ -3,12 +3,12 @@ class User < ApplicationRecord
 
     # relationships
     has_many :chanel_users
-    # has_many :friend_chanels, ->{ where(is_group: false)} , through: :chanel_users, source: :chanel
+    has_many :friend_chanels, ->{ where(is_group: false)} , through: :chanel_users, source: :chanel
     has_many :group_chanels, ->{ where(is_group: true)} , through: :chanel_users, source: :chanel
     has_many :channels, through: :chanel_users, source: :chanel
 
     # has_many :friends, ->{ where(is_group: false)}, through: :chanel_users, source: :user
-    # has_many :friends, through: :friend_chanels, source: :chanel_users
+    has_many :friends, ->{ where(:user_id != self.id)}, through: :friend_chanels, source: :chanel_users
     # has_many :friends, :class_name => 'User', :finder_sql => '
     #     SELECT users.* FROM users INNER JOIN chanel_users ON chanel_users.user_id = users.id 
     #     WHERE chanel_users.chanel_id in 

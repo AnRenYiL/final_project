@@ -36,7 +36,8 @@ $(function () {
             dataType: "json",
             success: function (data) {
                 if (data.status == 200) {
-                    const img_url = data.user.picture_url.includes("http") ? data.user.picture_url : "./images/" + data.user.picture_url;
+                    // const img_url = data.user.picture_url.includes("http") ? data.user.picture_url : "./images/" + data.user.picture_url;
+                    const img_url = data.user.picture_url;
                     $(".user-add-new-friend > img").attr("src", img_url);
                     $(".user-add-new-friend > span").css("display", "none");
                     $(".user-add-new-friend > img").css("display", "block");
