@@ -14,7 +14,7 @@ $(function () {
     $("#searchBtn").on('click', () => {
         $.ajax({
             type: "GET",
-            url: `${APIURL}/users/getUserByUserName`,
+            url: `/users/getUserByUserName`,
             data: { user_name: $("#user_name").val() },
             dataType: "json",
             success: function (data) {
@@ -40,7 +40,7 @@ $(function () {
 
         $.ajax({
             type: "POST",
-            url: `${APIURL}/requests/`,
+            url: `/requests/`,
             data: { receiver_id: $("#receiver_id").val() },
             dataType: "json",
             success: function (data) {
@@ -81,7 +81,7 @@ $(function () {
 function changeFriend(is_accepted, sender_id, request_id) {
     $.ajax({
         type: "PATCH",
-        url: `${APIURL}/requests/${request_id}`,
+        url: `/requests/${request_id}`,
         data: { sender_id, is_accepted },
         dataType: "json",
         success: function (data) {

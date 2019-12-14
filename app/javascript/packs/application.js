@@ -31,7 +31,7 @@ $(function () {
     $("#searchBtn").on('click', () => {
         $.ajax({
             type: "GET",
-            url: `${APIURL}/users/getUserByUserName`,
+            url: `/users/getUserByUserName`,
             data: { user_name: $("#user_name").val() },
             dataType: "json",
             success: function (data) {
@@ -58,7 +58,7 @@ $(function () {
 
         $.ajax({
             type: "POST",
-            url: `${APIURL}/requests/`,
+            url: `/requests/`,
             data: { receiver_id: $("#receiver_id").val() },
             dataType: "json",
             success: function (data) {
@@ -112,7 +112,7 @@ $(function () {
         const channel_name = $("#channel_name").val();
         $.ajax({
             type: "POST",
-            url: `${APIURL}/chanels/`,
+            url: `/chanels/`,
             data: { channel_name, id_list },
             dataType: "json",
             success: function (data) {

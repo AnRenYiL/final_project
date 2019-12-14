@@ -74,7 +74,7 @@ window.onscroll = function () {
         const chanel_id = $(".chatting-room-body-part").attr("data-chatroom-id");
         $.ajax({
             type: "GET",
-            url: `http://localhost:3000/messages/getMoreMsg`,
+            url: `/messages/getMoreMsg`,
             data: { first_id, chanel_id },
             dataType: "json",
             success: function (data) {
