@@ -8,6 +8,9 @@ class UsersController < ApplicationController
       
     def create
       @user = User.new user_params
+      if @user.picture_url == ""
+        @user.picture_url = "logo.png"
+      end
       if @user.save
         session[:user_id] = @user.id
         cookies[:user_id] = @user.id
@@ -29,6 +32,9 @@ class UsersController < ApplicationController
     end
 
     def update
+      if @user.picture_url == ""
+        @user.picture_url = "logo.png"
+      end
       if @user.update user_params
         redirect_to root_path(@user)
       else
