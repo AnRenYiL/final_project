@@ -26,8 +26,14 @@ class MessagesController < ApplicationController
             messages.each do |message|
                 user = message.user
                 created_date = message.created_at.localtime
-                html += 
-                "<div  class='chatting-item' id='#{message.id}'><img src='/assets/#{user.picture_url}'><div><strong>#{user.user_name}</strong><small>#{created_date.to_date == Time.new.localtime.to_date ? created_date.strftime("%I:%M %p") : created_date.strftime("%b %w %I:%M %p")}</small><p>#{message.body}</p></div></div>"
+                if !user.picture_url.include? "http" 
+                    html += 
+                    # "<div  class='chatting-item' id='#{message.id}'><img src='../images/#{user.picture_url}'><div><strong>#{user.user_name}</strong><small>#{created_date.to_date == Time.new.localtime.to_date ? created_date.strftime("%I:%M %p") : created_date.strftime("%b %w %I:%M %p")}</small><p>#{message.body}</p></div></div>"
+                    "<div  class='chatting-item' id='#{message.id}'><img src='../images/#{user.picture_url}'><div><strong>#{user.user_name}</strong><small>#{created_date.strftime("%I:%M %p")}</small><p>#{message.body}</p></div></div>"
+                else
+                    html += 
+                    "<div  class='chatting-item' id='#{message.id}'><img src='#{user.picture_url}'><div><strong>#{user.user_name}</strong><small>#{created_date.strftime("%I:%M %p")}</small><p>#{message.body}</p></div></div>"
+                end
             end
             if html != ""
                 render json: {messages: html, status: 200 }
