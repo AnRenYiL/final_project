@@ -16,7 +16,6 @@ require("jquery")
 // const imagePath = (name) => images(name, true)
 
 
-const APIURL = "http://localhost:3000";
 $(function () {
     // show the popup window
     $("#addNewFriendBtn").on("click", () => {
