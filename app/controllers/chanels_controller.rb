@@ -6,9 +6,9 @@ class ChanelsController < ApplicationController
       @message = Message.new
       channel_user = ChanelUser.where("user_id = #{current_user.id} AND chanel_id = #{@chanel.id}")[0]
       @messages = @chanel.messages.where("created_at <= '#{channel_user.last_check}' ").order(created_at:"desc").limit(20).reverse
-      @unread_messages = @chanel.messages.where("created_at > '#{channel_user.last_check}' AND user_id != #{current_user.id} ").order(created_at:"desc").reverse
+      @unread_messages = @chanel.messages.where("created_at > '#{channel_user.last_check}' ").order(created_at:"desc").reverse
+      byebug
       @title = @chanel.title
-      updateLastCheckTime(@chanel.id)
       if @title == nil
         channel_user = @chanel.chanel_users.where("user_id != #{current_user.id}")
         # @title = User.find(channel_user[0].user_id).user_name
